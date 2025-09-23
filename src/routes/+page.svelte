@@ -137,7 +137,8 @@
             class="rounded-2xl px-4 py-2 text-sm font-semibold
                    bg-gradient-to-r from-violet-400 via-sky-400 to-emerald-400
                    text-slate-900 shadow-lg shadow-black/30 ring-1 ring-white/20
-                   hover:brightness-110 transition">
+                   hover:brightness-110 transition"
+            on:click={startWatching}>
             Start
           </button>
         {:else}
@@ -149,26 +150,11 @@
             Stop
           </button>
         {/if}
-        <!-- bind click to start -->
-        {#if !watching}
-          <span class="hidden">{/* keep DOM consistent */}</span>
-        {/if}
-        <div class="hidden">{/* spacer */}</div>
         <label class="flex items-center gap-2 text-xs text-white/80">
           <input type="checkbox" bind:checked={highAccuracy} class="h-4 w-4 rounded accent-sky-400" /> High accuracy
         </label>
       </div>
     </header>
-
-    <!-- Wire Start button -->
-    <script>
-      // attach after DOM render
-      $: if (!watching) {
-        // delegate click binding here without changing logic above
-        const btn = document?.querySelector('button.rounded-2xl.bg-gradient-to-r');
-        btn && (btn.onclick = startWatching);
-      }
-    </script>
 
     <!-- Permissions & errors -->
     {#if permissionState === 'denied'}
