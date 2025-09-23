@@ -219,14 +219,10 @@
     <section class="rounded-2xl bg-white/10 ring-1 ring-white/15 p-6 backdrop-blur-md shadow-xl shadow-black/20">
       <div class="mb-4 flex items-center justify-between">
         <h2 class="text-sm font-semibold tracking-wide text-white/90">15 m Zone</h2>
-        <span class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm"
-              class:bg-green-500/20={insideZone}
-              class:text-green-100={insideZone}
-              class:bg-rose-500/20={!insideZone}
-              class:text-rose-100={!insideZone}>
-          <span class="h-2 w-2 rounded-full"
-                class:bg-green-400={insideZone}
-                class:bg-rose-400={!insideZone}></span>
+        <span
+          class={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm
+                  ${insideZone ? 'bg-green-500/20 text-green-100' : 'bg-rose-500/20 text-rose-100'}`}>
+          <span class={`h-2 w-2 rounded-full ${insideZone ? 'bg-green-400' : 'bg-rose-400'}`}></span>
           {insideZone ? 'Inside (≤ 15 m)' : 'Outside (> 15 m)'}
         </span>
       </div>
@@ -235,22 +231,20 @@
       <div class="mx-auto flex max-w-sm items-center justify-center">
         <div class="relative h-64 w-64 rounded-full border-2 border-dashed border-white/30 shadow-2xl shadow-black/40">
           <!-- Zone fill -->
-          <div class="absolute inset-0 rounded-full opacity-30"
-               class:bg-gradient-to-br={insideZone}
-               class:from-green-300={insideZone}
-               class:to-green-600={insideZone}
-               class:bg-rose-500={!insideZone}></div>
+          <div
+            class={`absolute inset-0 rounded-full opacity-30
+                    ${insideZone ? 'bg-gradient-to-br from-green-300 to-green-600' : 'bg-rose-500'}`}>
+          </div>
 
           <!-- Target dot -->
           <div class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" title="Target"></div>
 
           <!-- User dot -->
-          <div class="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4"
-               class:bg-green-400={insideZone}
-               class:bg-rose-400={!insideZone}
-               class:ring-green-200/40={insideZone}
-               class:ring-rose-200/40={!insideZone}
-               title="You"></div>
+          <div
+            class={`absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4
+                    ${insideZone ? 'bg-green-400 ring-green-200/40' : 'bg-rose-400 ring-rose-200/40'}`}
+            title="You">
+          </div>
         </div>
       </div>
 
